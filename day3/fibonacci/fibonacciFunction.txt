@@ -1,0 +1,10 @@
+function printFibSequence() {
+    fibSequenceArray = [0,1];
+    for (let i=2; i<12; i++) {
+        let num1 = fibSequenceArray[i-2];
+        let num2 = fibSequenceArray[i-1];
+        let numToAdd = num1+num2;
+        fibSequenceArray.push(numToAdd);
+    }
+    console.log(fibSequenceArray);
+}
