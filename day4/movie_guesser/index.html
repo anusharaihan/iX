@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Guesser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <div class="card p-4 my-3 text-center gray border border-dark">
+            <div class="card-body">
+                <h5 class="card-title"> <b>Badly explained movies</b></h5>
+                <hr />
+                <h6 id="explanation-output" class="card-subtitle mb-2"></h6>
+                <hr />  
+                <h6 id="hint-output" class="card-subtitle mb-2 text-muted hide"></h6>
+                <div class="my-3">
+                    <input type="text" class="form-control" id="guess-input" placeholder="Enter guess here">
+                </div> 
+
+                <div class="d-grid gap-2">
+                    <button type="submit"  class="btn btn-primary my-2" id="submit-button">Submit</button>
+                    <button type="button" class="btn btn-secondary my-2" id="hint-button">Show hint</button>
+                </div>
+            </div>
+        </div> 
+        <div id="output"></div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
