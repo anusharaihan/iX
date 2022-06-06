@@ -2,6 +2,10 @@ class Task {
     constructor (taskName) {
         this.taskName = taskName
     }
+
+    static fromoJsonObject(object) {
+        return new Task(object.taskName);
+    }
 }
 
 class UserInterface {
@@ -15,12 +19,15 @@ class UserInterface {
             const task = new Task(this.taskName.value);
 
             this.tasks.push(task);
-            localStorage.setItem('taskArray',this.tasks); //stores "tasks" to local storage?
+            this.saveTasksToLocalStorage();
             this.renderTableBody();
             this.taskName.value = '';
         });
 
         this.tasks = [];
+
+        this.loadTasksFromLocalStorage();
+
         this.renderTableBody();
     }
 
@@ -66,9 +73,10 @@ class UserInterface {
 
         removeButton.addEventListener('click', () => {
             this.tasks = this.tasks.filter((t) => {
-                return t.taskName != task.taskName;
+                return t.taskName !== task.taskName;
             });
     
+            this.saveTasksToLocalStorage();
             this.renderTableBody();
         });
         return removeButton;
@@ -79,9 +87,20 @@ class UserInterface {
         input1.setAttribute('type', 'checkbox');
         return input1;
     }
+
+    saveTasksToLocalStorage() {
+        const json = JSON.stringify(this.tasks);
+        localStorage.setItem('tasks', json)
+    }
+
+    loadTasksFromLocalStorage() {
+        const json = localStorage.getItem('tasks');
+
+        if (json) {
+            const taskArray = JSON.parse(json);
+            this.tasks = taskArray.map((ob) =>Task.fromoJsonObject(ob));
+        }        
+    }
 }
 
-//let previousTasks = localStorage.getItem('taskArray');
-//I'm having trouble saving the array of tasks to local storage
-
-new UserInterface();
+const ui = new UserInterface();
