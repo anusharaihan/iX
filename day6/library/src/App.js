@@ -1,5 +1,6 @@
 import React from 'react'
 import FormInput from './components/formInput/FormInput'
+import Button from './components/button/Button'
 
 export default function App() {
 
@@ -10,7 +11,9 @@ export default function App() {
           <FormInput inputType='title'></FormInput>
           <FormInput inputType='author'></FormInput>
           <FormInput inputType='isbn'></FormInput>
+          <Button></Button>
           {/* <Book title={document.getElementById('title').value} author={document.getElementById('author').value} isbn={document.getElementById('isbn').value}></Book> */}
+          {/* <Button title={document.getElementById('title').value} author={document.getElementById('author').value} isbn={document.getElementById('isbn').value}></Button> */}
         </form>
       </div>
       
