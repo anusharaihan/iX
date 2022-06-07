@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Counter(props) { //TO-DO: is this where props should go?
+export default function Counter(props) {
     const[count, setCount] = useState(props.count);
 
     function increaseCount() {
