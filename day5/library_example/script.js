@@ -4,6 +4,14 @@ class Book {
         this.author = author;
         this.isbn = isbn;
     }
+
+    static fromJsonObject(object) {
+        return new Book (
+            object.title,
+            object.author,
+            object.isbn
+        )
+    }
 }
 
 class UserInterface {
@@ -21,6 +29,8 @@ class UserInterface {
 
        this.books = [];
 
+       this.loadBooksFromLocalStorage();
+
        this.renderTableBody();
     }
 
@@ -33,6 +43,7 @@ class UserInterface {
         );  
 
         this.books.push(book);
+        this.saveBooksToLocalStorage();
         this.renderTableBody();
 
         this.title.value = '';
@@ -60,7 +71,6 @@ class UserInterface {
         <td> </td> //action
     </tr>
     */
-
     generateBookRow(book) {
         const tr = document.createElement('tr');
 
@@ -80,9 +90,6 @@ class UserInterface {
         tr.appendChild(cellAuthor);
         tr.appendChild(cellISBN);
         tr.appendChild(cellActions);
-
-        //create the row from the book
-
 
         return tr;
     }
@@ -104,7 +111,23 @@ class UserInterface {
             return b.isbn != book.isbn;
         });
 
+        this.saveBooksToLocalStorage();
+
         this.renderTableBody();
+    }
+
+    saveBooksToLocalStorage() {
+        const json = JSON.stringify(this.books); //stringify converts JS object to string in json format
+
+        localStorage.setItem('books', json);
+    }
+
+    loadBooksFromLocalStorage() {
+        const json = localStorage.getItem('books');
+        if (json) {
+            const bookArray = JSON.parse(json); //parse converts json string to JS object
+            this.books = bookArray.map((ob) => Book.fromJsonObject(ob));
+        }
     }
 }
 new UserInterface();
