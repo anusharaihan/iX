@@ -15,10 +15,7 @@ import TaskTable from './components/TaskTable'
 
 export default function App() {
 
-  const [tasks, setTasks] = useState([
-    new Task(1, 'Task 1', false),
-    new Task(2, 'Task 2', false)
-  ])
+  const [tasks, setTasks] = useState([])
 
   function onCreateTask(taskName) {
     // create a new Task
@@ -33,19 +30,21 @@ export default function App() {
   }
 
   function onToggleComplete(taskId) {
-    console.log('App.js', taskId);
     // find task to toggle
+    const task = tasks.find((task) => task.id === taskId);
 
     // toggle complete value
+    task.complete = !task.complete;
 
     // update the task list state
+    setTasks(tasks.map((t) => {
+      return t.id === taskId ? task: t
+    }));
   }
 
   function onRemoveTask(taskId) {
     // filter task list to remove task
-
-    // update task list
-
+    setTasks(tasks.filter((task) => task.id !== taskId));
   }
 
 
@@ -58,6 +57,7 @@ export default function App() {
         <TaskInput onCreateTask = {onCreateTask}/>
         <TaskTable
           onToggleComplete = {onToggleComplete}
+          onRemoveTask= {onRemoveTask}
           tasks = {tasks} />
       </div> 
     </div>
