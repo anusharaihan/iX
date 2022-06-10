@@ -45,8 +45,6 @@ export default function FormInput(props) {
                         +
                     </button>
                 </div>
-          {/* <Book title={document.getElementById('title').value} author={document.getElementById('author').value} isbn={document.getElementById('isbn').value}></Book> */}
-          {/* <Button title={document.getElementById('title').value} author={document.getElementById('author').value} isbn={document.getElementById('isbn').value}></Button> */}
             </form>    
         </div>
     )
