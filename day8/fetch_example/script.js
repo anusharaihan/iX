@@ -1,6 +1,6 @@
 
 
-const url = 'https://jsonplaceholder.typicode.com/todos/21';
+const url = 'https://jsonplaceholder.typicode.com/todos/21'; //free fake REST API meant for testing and prototyping
 
 async function fetchTodos() {
     //do the fetch
@@ -12,7 +12,7 @@ async function fetchTodos() {
     });
 
 
-    if (response.status >= 200 && response.status<300) {
+    if (response.status >= 200 && response.status<300) { // a status code in the 200s is success
         const json = await response.json();
         return json;
     } else {
