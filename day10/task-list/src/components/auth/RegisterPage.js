@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import { createUserWithEmailAndPassword } from '/firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {useNavigate } from 'react-router-dom';
 
 
@@ -15,6 +15,7 @@ export default function RegisterPage() {
 
     async function onFormSubmit(e) {
         e.preventDefault();
+        //register the user
         try {
             const userCred = await createUserWithEmailAndPassword (
                 auth,
@@ -23,7 +24,7 @@ export default function RegisterPage() {
             )
             console.log(userCred);
 
-            navigate('/');
+            navigate('/'); //navigates to TasksPage after user registers
         } catch(err) {
             //deal with the error
             alert(err.message);
@@ -45,8 +46,8 @@ export default function RegisterPage() {
                         </label>
                         <input
                             //the next two lines are two-way binding
-                            value={email}
-                            onChange = {(e) => setEmail(e.target.value)}
+                            value={email} //when we change the email state, it updates in the input
+                            onChange = {(e) => setEmail(e.target.value)} //when we change email in the input (ie typing it in), it changes the state
                             type="email"
                             className="form-control"
                         />
@@ -57,8 +58,8 @@ export default function RegisterPage() {
                             </label>
                         <input 
                             //the next two lines are two-way binding
-                            value={password}
-                            onChange = {(e) => setPassword(e.target.value)}
+                            value={password} //when we change the password state, it updates the input
+                            onChange = {(e) => setPassword(e.target.value)} //when we change password in the input (ie typing it in), it changes the state
                             type="password"
                             className="form-control"
                         />

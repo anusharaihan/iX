@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 
-import { signInWithEmailAndPassword } from '/firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import {useNavigate } from 'react-router-dom';
+
 
 import { auth } from '../../firebase/firebase';
 
@@ -14,6 +15,7 @@ export default function LoginPage() {
 
     async function onFormSubmit(e) {
         e.preventDefault();
+        //register the user
         try {
             const userCred = await signInWithEmailAndPassword (
                 auth,
@@ -22,7 +24,7 @@ export default function LoginPage() {
             )
             console.log(userCred);
 
-            navigate('/');
+            navigate('/'); //navigates to TasksPage after user registers
         } catch(err) {
             //deal with the error
             alert(err.message);
@@ -34,8 +36,8 @@ export default function LoginPage() {
         <div className = "container my-4">
             <div className='card card-body'>
 
-                <h1>Login</h1>
-                <p>Login with your email and password</p>
+                <h1>Log in</h1>
+                <p>Log in with your email and password</p>
 
                 <form onSubmit = {onFormSubmit}>
                     <div className="mb-3">
@@ -44,8 +46,8 @@ export default function LoginPage() {
                         </label>
                         <input
                             //the next two lines are two-way binding
-                            value={email}
-                            onChange = {(e) => setEmail(e.target.value)}
+                            value={email} //when we change the email state, it updates in the input
+                            onChange = {(e) => setEmail(e.target.value)} //when we change email in the input (ie typing it in), it changes the state
                             type="email"
                             className="form-control"
                         />
@@ -56,8 +58,8 @@ export default function LoginPage() {
                             </label>
                         <input 
                             //the next two lines are two-way binding
-                            value={password}
-                            onChange = {(e) => setPassword(e.target.value)}
+                            value={password} //when we change the password state, it updates the input
+                            onChange = {(e) => setPassword(e.target.value)} //when we change password in the input (ie typing it in), it changes the state
                             type="password"
                             className="form-control"
                         />
@@ -65,7 +67,7 @@ export default function LoginPage() {
 
                     <div className = 'text-center'>
                         <button className = 'btn btn-primary px-5'>
-                            Login
+                            Log in
                         </button>
                     </div>
 
