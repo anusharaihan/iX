@@ -9,6 +9,7 @@ import{ db } from '../firebase/firebase'
 import { Book } from '../models/book/Book';
 class BookService {
 
+
     constructor() {
         this.collection = 'books';
     }
@@ -19,8 +20,9 @@ class BookService {
         const docRef = await addDoc(collectionRef, {
             title: book.title,
             author: book.author,
-            isbn: book.isbn
+            //isbn: book.isbn
         });
+        book.isbn=docRef.id;
         return book;
     }
     
@@ -37,7 +39,7 @@ class BookService {
             books.push (new Book(
                 data.title,
                 data.author,
-                data.isbn
+                doc.id //data.isbn
             ));
         });
         return books;
@@ -49,7 +51,7 @@ class BookService {
         await updateDoc(docRef, {
             title: book.title,
             author: book.author,
-            isbn: book.isbn
+            //isbn: book.isbn
         });
         return book;
     }

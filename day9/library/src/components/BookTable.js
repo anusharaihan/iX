@@ -2,8 +2,6 @@ import React from 'react'
 
 export default function bookTable(props) {
 
-    console.log(props);
-
     return (
         <div>
             <table className="table">

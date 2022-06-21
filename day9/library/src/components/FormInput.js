@@ -15,6 +15,7 @@ export default function FormInput(props) {
     }
     return (
         <div>
+            {console.log(isbn)}
             <form onSubmit = {onFormSubmit}>
                 <div className="input-group mb-3">
                     <input
