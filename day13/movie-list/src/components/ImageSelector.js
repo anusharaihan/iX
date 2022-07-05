@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 export default function ImageSelector({
     title,
@@ -20,7 +20,7 @@ export default function ImageSelector({
         //the file has been read successfuly
         setFileContent(res.target.result);
       };
-      reader.readAsDataURL
+      reader.readAsDataURL(file);
     } 
       onFileChange(file);
     }
@@ -30,30 +30,30 @@ export default function ImageSelector({
     <div className="mb-3">
       <label className="form-label">
         {title}
-    </label>
+      </label>
       <input
         ref={inputRef}
         onChange={onFileSelected}
         type="file"
         className="form-control"
-        style = {{display: 'none'}} />
+        style = {{display: 'none'}}
+      />
 
         {
             fileContent ? 
-            <div className='text-center mb-3'>
-                <img style={{
-                    width: '200px',
-                    height: '300px',
-                    'objectFit': 'cover'
-                }}
-                    src={fileContent} alt='file content' />
+            <div classname='text-center mb-3'>
+              <img style={{
+                width: '200px',
+                height: '300px',
+                'objectFit': 'cover',
+              }} src={fileContent} alt='file content' />
             </div>
             :
             <></>
         }
 
         <div className='text-center'>
-            <button type='button' onClick={() => inputRef.current.click()} className='btn btn-success'>
+            <button onClick={() => {inputRef.current.click()}} className='btn btn-success'>
                 Select Image
             </button>
         </div>

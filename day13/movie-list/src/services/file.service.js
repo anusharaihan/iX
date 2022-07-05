@@ -3,14 +3,14 @@ import {
     uploadBytesResumable,
     getDownloadURL,
     deleteObject
-} from 'firebase/storage'
+} from 'firebase/storage';
 
 import {storage} from '../firebase/firebase'
 
 class FileService {
     uploadImage(file, onUploadProgress) {
         return new Promise((resolve, reject) => {
-            const fileRef =ref(storage, 'images/' + file.name);
+            const fileRef =ref(storage, 'images/' + this.getUniqueFileName(file));
             const uploadTask = uploadBytesResumable(fileRef,file)
             uploadTask.on('state_changed',
                 (snapshot) => {
@@ -40,13 +40,12 @@ class FileService {
         const fileExtension = file.name.substring(dotIndex);
         const timestamp = (new Date()).getTime();
         return fileName + '-' + timestamp + fileExtension;
-
     }
 
 
     handleProgressUpdate(snapshot, onUploadProgress) {
         if (onUploadProgress) {
-            const progress = snapshot.bytesTransferred / snapshot/totalBytes * 100;
+            const progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
             onUploadProgress(progress);
         }
     }
@@ -60,14 +59,13 @@ class FileService {
 
 }
 
+// try {
+//     const value = await service.uploadImage(file);
+// } catch(err) {
+
+// }
+
+// service.uploadImage(file).then((value) => {});
 
 const service = new FileService();
-
-try {
-    const value = await service.uploadImage(file);
-} catch(err) {
-
-}
-
-service.uploadImage(file).then((value) => {});
 export default service;

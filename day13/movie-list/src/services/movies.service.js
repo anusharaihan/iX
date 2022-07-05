@@ -1,7 +1,13 @@
-import {collection, query, getDocs, addDoc} from 'firebase/firestore'
+import {
+    collection,
+    query,
+    getDocs, 
+    addDoc, 
+    doc,
+    deleteDoc} from 'firebase/firestore'
 
-import {db} from '../firebase/firebase'
-import {Movie} from '../models/movie'
+import {db} from '../firebase/firebase';
+import {Movie} from '../models/movie';
 
 class MoviesService {
 
@@ -22,7 +28,7 @@ class MoviesService {
     async fetchMovies() {
         const collectionRef = collection(db, this.collection);
 
-        const querySnapshot = getDocs(query(collectionRef));
+        const querySnapshot = await getDocs(query(collectionRef));
         const movies = [];
         querySnapshot.forEach(doc => {
             movies.push(Movie.fromFirebase(doc))
@@ -36,6 +42,6 @@ class MoviesService {
         await deleteDoc(docRef);
     }
 }
-const service = new MoviesService();
 
+const service = new MoviesService();
 export default service;

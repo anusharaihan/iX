@@ -9,7 +9,7 @@ import ImageSelector from "./ImageSelector";
 export default function AddMoviePage() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [file, setFile] = useState(null);
 
   async function onFormSubmit(e) {
@@ -22,7 +22,7 @@ export default function AddMoviePage() {
       });
 
       //save the movie to firebase
-      MoviesService.createMovie(
+      await MoviesService.createMovie(
         new Movie({
           id: null,
           name: name,
@@ -68,5 +68,5 @@ export default function AddMoviePage() {
         </form>
       </div>
     </div>
-  );
+  )
 }

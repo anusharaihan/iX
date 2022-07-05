@@ -1,4 +1,4 @@
-class Movie {
+export class Movie {
     constructor( {id, name, downloadUrl }) {
         this.id = id;
         this.name = name;
@@ -12,13 +12,13 @@ class Movie {
         }
     }
 
-    static fromFirebase(doc)
- {
-    const data = doc.data();
+    static fromFirebase(doc) {
+        const data = doc.data();
 
-    return new Movie({
-        id: doc.id,
-        name: data.name,
-        downloadUrl: data.downloadUrl
-    })
- }}
+        return new Movie({
+            id: doc.id,
+            name: data.name,
+            downloadUrl: data.downloadUrl
+        });
+    }
+}
